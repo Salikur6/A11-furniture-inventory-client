@@ -1,0 +1,23 @@
+input.custom {
+    
+    background-color:#212529;
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: black
+  }
+
+input.custom::placeholder {
+    font-weight: bold;
+}
+
+.contact{
+    position: relative;
+}
+.contact::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: calc(100% + 9.4%);
+    background-position: center center;
+    background-image: url(https://i.ibb.co/m8tySBv/contact.jpg);
+}

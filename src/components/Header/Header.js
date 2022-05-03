@@ -20,7 +20,7 @@ const Header = () => {
         <nav className={colorChange ? 'headerColor navbar navbar-expand-lg fixed-top' : 'navbar navbar-expand-lg  bg-transparent fixed-top'}>
             <div className="container">
                 <Link className="navbar-brand" to="/"><img style={{ borderRadius: '50px', width: '75px' }} className='bg-white' src={logo} alt="" /></Link>
-                <button className="navbar-toggler bg-danger border border-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button className="navbar-toggler bg-dark border border-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">

@@ -1,0 +1,8 @@
+.slick-arrow{
+    background-color:  black;
+    border-radius: 15px;
+    padding: 1px 0px 2px 0px;
+}
+.slick-next{
+    right: 0;
+}
