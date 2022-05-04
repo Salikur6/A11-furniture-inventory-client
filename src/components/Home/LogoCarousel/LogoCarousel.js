@@ -47,7 +47,8 @@ const LogoCarousel = () => {
 
     };
     return (
-        <div style={{ backgroundColor: '#E3EEF2' }}>
+        // style={{ backgroundColor: '#E3EEF2' }}
+        <div>
             <div className='container my-5 py-4'>
 
                 <p className='fw-bold text-center mb-5'>Over 15000 businesses of all sizes trust us.</p>

@@ -21,3 +21,12 @@ input.custom::placeholder {
     background-position: center center;
     background-image: url(https://i.ibb.co/m8tySBv/contact.jpg);
 }
+.about::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: calc(100% + 9.4%);
+    background-position: center center;
+    mix-blend-mode: saturation;
+    background-image: url(https://i.ibb.co/RQV0x2x/aboutbg.jpg);
+}

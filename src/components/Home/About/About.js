@@ -2,9 +2,11 @@ import React from 'react';
 
 const About = () => {
     return (
-        <div className='bg-dark text-white'>
+        <div className='bg-dark text-white about'>
             <div className='container'>
-                <div className='my-4 pt-5'>
+                <div className='my-4 pt-5' style={{
+                    zIndex: '999'
+                }}>
                     <div className='text-center'>
                         <h2 className='fw-bold'>About</h2>
                         <p className='fw-bold'> The ‘game-changer’ in Bangladesh’s furniture industry.</p>

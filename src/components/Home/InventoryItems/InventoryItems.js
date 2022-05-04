@@ -1,14 +1,9 @@
-import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useInventory from '../../Hooks/useInventory';
 
 const InventoryItems = () => {
-    const [products, setProducts] = useState([]);
+    const [products] = useInventory();
 
-    useEffect(() => {
-        fetch('http://localhost:5000/inventory')
-            .then(res => res.json())
-            .then(data => setProducts(data))
-    }, [])
     return (
         <div className='container my-5'>
 
@@ -54,7 +49,7 @@ const InventoryItems = () => {
                                 <h6 style={{ fontFamily: "'Roboto', sans-serif" }} className='fw-bold mb-4'>Supplier Name: {pd.supplier}</h6>
 
                                 <div className='text-center'>
-                                    <Link to="#" className="btn btn-warning fw-bold">Stock Update</Link>
+                                    <Link to={`/inventory/${pd._id}`} className="btn btn-warning fw-bold">Stock Update</Link>
                                 </div>
                             </div>
                         </div>

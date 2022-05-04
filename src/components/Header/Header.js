@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../../img/logo2.png'
 import './Header.css'
 
@@ -15,9 +15,18 @@ const Header = () => {
     };
     window.addEventListener('scroll', changeNavbarColor);
 
-    // className = ""
+    const location = useLocation();
+    let active = false;
+
+
+    if (location.pathname === `/`) {
+        active = true;
+    }
+
+
+    // #191970
     return (
-        <nav className={colorChange ? 'headerColor navbar navbar-expand-lg fixed-top' : 'navbar navbar-expand-lg  bg-transparent fixed-top'}>
+        <nav className={`${colorChange || !active ? 'headerColor navbar navbar-expand-lg fixed-top' : 'navbar navbar-expand-lg bg-transparent fixed-top'}`}>
             <div className="container">
                 <Link className="navbar-brand" to="/"><img style={{ borderRadius: '50px', width: '75px' }} className='bg-white' src={logo} alt="" /></Link>
                 <button className="navbar-toggler bg-dark border border-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,22 +35,28 @@ const Header = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link active text-white fw-bold" aria-current="page" to="/">Home</Link>
+                            <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} aria-current="page" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link text-white fw-bold" to="#">Link</Link>
+                            <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="#">Link</Link>
                         </li>
-                        <li className="nav-item dropdown">
-                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
-                            </Link>
-                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><Link className="dropdown-item" to="#">Action</Link></li>
-                                <li><Link className="dropdown-item" to="#">Another action</Link></li>
-                                <li><hr className="dropdown-divider" /></li>
-                                <li><Link className="dropdown-item" to="#">Something else here</Link></li>
-                            </ul>
+
+                        <li className="nav-item">
+                            <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="#">Link</Link>
                         </li>
+
+                        <li className="nav-item">
+                            <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="#">Link</Link>
+                        </li>
+
+                        <li className="nav-item">
+                            <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="#">Link</Link>
+                        </li>
+
+                        <li className="nav-item">
+                            <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="#">Link</Link>
+                        </li>
+
 
                     </ul>
                     <form className="d-flex">

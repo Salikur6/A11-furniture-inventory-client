@@ -12,7 +12,7 @@ const Home = () => {
             <div className=''>
                 <div className='position-relative banner'>
 
-                    <img style={{ height: '90vh' }} className='w-100' src={banner} alt="" />
+                    <img style={{ height: '95vh' }} className='w-100' src={banner} alt="" />
                 </div>
 
                 <div className='position-absolute text-white' style={{ left: '20%', top: '30%' }}>
@@ -29,6 +29,7 @@ const Home = () => {
 
             </div>
 
+            <LogoCarousel></LogoCarousel>
             <InventoryItems></InventoryItems>
 
 
@@ -36,7 +37,8 @@ const Home = () => {
 
             <Contact></Contact>
 
-            <LogoCarousel></LogoCarousel>
+            <div className="row"></div>
+
         </>
 
 
