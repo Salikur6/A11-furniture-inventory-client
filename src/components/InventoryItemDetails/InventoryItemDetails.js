@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import useSingleIventory from '../Hooks/useSingleIventory';
 import './InventoryItemDetails.css'
 import { useForm } from "react-hook-form";
+
 
 const InventoryItem = () => {
     const { register, handleSubmit } = useForm();
@@ -12,6 +13,7 @@ const InventoryItem = () => {
     const [reload, setReload] = useState(false);
     const [q, setQ] = useState([]);
     const [sold, setSold] = useState(false);
+    console.log(q)
 
     useEffect(() => {
         fetch(`http://localhost:5000/inventory/${itemId}`)
@@ -99,7 +101,8 @@ const InventoryItem = () => {
                         }
                         {/* <button className='btn btn-primary fw-bold p-2 rounded-pill' onClick={handleDelivered}>Delivered</button> */}
 
-                        <button className='btn btn-dark fw-bold p-2 rounded-pill'>Manage Inventories</button>
+
+                        <Link to='/manageinventory' className='btn btn-dark fw-bold p-2 rounded-pill'>Manage Inventories</Link>
                     </div>
                 </div>
 
