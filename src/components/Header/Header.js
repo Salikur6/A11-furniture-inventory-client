@@ -4,6 +4,7 @@ import logo from '../../img/logo2.png'
 import './Header.css'
 
 const Header = () => {
+
     const [colorChange, setColorchange] = useState(false);
     const changeNavbarColor = () => {
         if (window.scrollY >= 10) {
@@ -38,29 +39,29 @@ const Header = () => {
                             <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} aria-current="page" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="#">Link</Link>
+                            <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="/manageinventory">Manage Item</Link>
                         </li>
 
                         <li className="nav-item">
-                            <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="#">Link</Link>
+                            <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="/additem">Add Item</Link>
                         </li>
 
                         <li className="nav-item">
-                            <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="#">Link</Link>
+                            <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="/blogs">Blogs</Link>
                         </li>
 
                         <li className="nav-item">
-                            <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="#">Link</Link>
+                            <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="/register">Register</Link>
                         </li>
 
                         <li className="nav-item">
-                            <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="#">Link</Link>
+                            <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="/login">Login</Link>
                         </li>
 
 
                     </ul>
-                    <form className="d-flex">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                    <form className="d-flex justify-content-end">
+                        <input className="form-control me-2 w-50" type="search" placeholder="Search" aria-label="Search" />
                         <button className="btn btn-outline-success" type="submit">Search</button>
                     </form>
                 </div>
