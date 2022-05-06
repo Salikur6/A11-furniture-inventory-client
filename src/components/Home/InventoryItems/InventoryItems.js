@@ -1,9 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useInventory from '../../Hooks/useInventory';
 
 const InventoryItems = () => {
     const [products] = useInventory();
+    // console.log(products)
 
+    const navigate = useNavigate();
     return (
         <div className='container my-5'>
 
@@ -39,7 +41,7 @@ const InventoryItems = () => {
                             <div className="card-body">
                                 <h5 className="card-title fw-bold my-2">{pd.name}</h5>
 
-                                <p style={{ fontFamily: "'Roboto', sans-serif" }} className="card-text my-3 ">{pd.description}</p>
+                                <p style={{ fontFamily: "'Roboto', sans-serif" }} className="card-text my-3 ">{pd.description.slice(0, 60) + '.....'} </p>
 
                                 <div className='my-3'>
                                     <h6 style={{ fontFamily: "'Roboto', sans-serif" }} className='fw-bold mb-3'>Price: ${pd.price}</h6>
@@ -56,7 +58,12 @@ const InventoryItems = () => {
                     </div>
 
                 )}
+                <div className='text-center my-5'>
+                    <button onClick={() => navigate('/manageinventory')} className='btn btn-dark fw-bold p-2 px-5 rounded-pill'>Manage Inventories</button>
+                </div>
             </div>
+
+
         </div>
     );
 };

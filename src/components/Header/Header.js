@@ -26,7 +26,7 @@ const Header = () => {
 
     // #191970
     return (
-        <nav className={`${colorChange || !active ? 'headerColor navbar navbar-expand-lg fixed-top' : 'navbar navbar-expand-lg bg-transparent fixed-top'}`}>
+        <nav className={`${colorChange || !active ? 'headerColor navbar navbar-expand-lg fixed-top' : 'navbar navbar-expand-lg bg-transparent fixed-top'} ${!active && 'custom-bg'}`}>
             <div className="container">
                 <Link className="navbar-brand" to="/"><img style={{ borderRadius: '50px', width: '75px' }} className='bg-white' src={logo} alt="" /></Link>
                 <button className="navbar-toggler bg-dark border border-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

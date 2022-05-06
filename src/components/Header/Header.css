@@ -4,6 +4,7 @@
 }
 nav.custom-bg{
     background-color: #191970;
+    position: sticky;
 }
 /* .custom-nav{
     color: ;
