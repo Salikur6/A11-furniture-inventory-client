@@ -5,6 +5,7 @@ import InventoryItems from './InventoryItems/InventoryItems';
 import LogoCarousel from './LogoCarousel/LogoCarousel';
 import About from './About/About';
 import Contact from './Contact/Contact';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     return (
@@ -22,7 +23,7 @@ const Home = () => {
                         <p>Modern & Powerfull Furniture <br />
                             High quality furniture rentals available
                         </p>
-                        <button className='btn btn-success fw-bold px-4 my-3'>Sign up for free</button>
+                        <Link to='/register' className='btn btn-success fw-bold px-4 my-3'>Sign up for free</Link>
                     </div>
                 </div>
 
