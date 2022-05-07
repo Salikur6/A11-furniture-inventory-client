@@ -1,10 +1,13 @@
+import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useLocation } from 'react-router-dom';
+import auth from '../../Firebase.init';
 import logo from '../../img/logo2.png'
 import './Header.css'
 
 const Header = () => {
-
+    const [user] = useAuthState(auth);
     const [colorChange, setColorchange] = useState(false);
     const changeNavbarColor = () => {
         if (window.scrollY >= 10) {
@@ -25,7 +28,17 @@ const Header = () => {
     }
 
 
-    // #191970
+    const logOut = () => {
+        signOut(auth);
+    };
+
+
+
+
+
+
+
+
     return (
         <nav className={`${colorChange || !active ? 'headerColor navbar navbar-expand-lg fixed-top' : 'navbar navbar-expand-lg bg-transparent fixed-top'} ${!active && 'custom-bg'}`}>
             <div className="container">
@@ -50,13 +63,19 @@ const Header = () => {
                             <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="/blogs">Blogs</Link>
                         </li>
 
-                        <li className="nav-item">
+                        {!user && <li className="nav-item">
                             <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="/register">Register</Link>
-                        </li>
+                        </li>}
 
-                        <li className="nav-item">
+
+
+                        {user ? <li className="nav-item">
+                            <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} onClick={logOut} to>Sign Out</Link>
+                        </li> : <li className="nav-item">
                             <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="/login">Login</Link>
-                        </li>
+                        </li>}
+
+
 
 
                     </ul>

@@ -10,6 +10,7 @@ import Home from './components/Home/Home';
 import InventoryItem from './components/InventoryItemDetails/InventoryItemDetails';
 import Login from './components/Login/Login';
 import ManageInventory from './components/ManageInventory/ManageInventory';
+import PrivetRoute from './components/PrivetRoute/PrivetRoute';
 import Register from './components/Register/Register';
 
 function App() {
@@ -20,13 +21,25 @@ function App() {
 
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
+
         <Route path='/home' element={<Home></Home>}></Route>
+
         <Route path='/inventory/:itemId' element={<InventoryItem></InventoryItem>}></Route>
-        <Route path='/manageinventory' element={<ManageInventory></ManageInventory>}></Route>
+
+        <Route path='/manageinventory' element={
+          <PrivetRoute>
+            <ManageInventory></ManageInventory>
+          </PrivetRoute>
+        }></Route>
+
         <Route path='/register' element={<Register></Register>}></Route>
+
         <Route path='/login' element={<Login></Login>}></Route>
+
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
+
         <Route path='/additem' element={<AddItem></AddItem>}></Route>
+
       </Routes>
 
 
