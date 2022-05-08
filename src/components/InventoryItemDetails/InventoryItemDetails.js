@@ -16,7 +16,7 @@ const InventoryItem = () => {
     console.log(q)
 
     useEffect(() => {
-        fetch(`http://localhost:5000/inventory/${itemId}`)
+        fetch(`https://still-chamber-50520.herokuapp.com/inventory/${itemId}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data.quantity)
@@ -30,14 +30,14 @@ const InventoryItem = () => {
             })
     }, [itemId, reload, setItem, sold]);
 
-
+    //handleing deliverd button for quantity reduce 
 
     const handleDelivered = () => {
 
         const quantity = parseInt(item.quantity) - 1;
 
         if (quantity >= 0) {
-            const url = `http://localhost:5000/inventory/${itemId}`;
+            const url = `https://still-chamber-50520.herokuapp.com/inventory/${itemId}`;
             fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -48,16 +48,19 @@ const InventoryItem = () => {
                 .then(res => res.json())
                 .then(data => {
                     // console.log(data)
-                    setQ(item.quantity)
+                    setQ(item?.quantity)
                     setReload(!reload);
                 })
         }
     }
 
+
+    // quantity restock form 
+
     const onSubmit = (data, event) => {
         const quantity = data?.quantity;
         // console.log(data)
-        const url = `http://localhost:5000/inventory/${itemId}`;
+        const url = `https://still-chamber-50520.herokuapp.com/inventory/${itemId}`;
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -69,7 +72,7 @@ const InventoryItem = () => {
             .then(data => {
 
 
-                setQ(item.quantity)
+                setQ(item?.quantity)
                 setReload(!reload);
                 // setSold(false);
 
@@ -84,15 +87,15 @@ const InventoryItem = () => {
                 <div className="col-lg-6">
                     <div><img style={{
                         height: '400px',
-                    }} className='w-100 details-img' src={item.img} alt="" /></div>
+                    }} className='w-100 details-img' src={item?.img} alt="" /></div>
                 </div>
                 <div className="col-lg-6 ps-sm-5">
                     <p style={{ fontSize: '14px' }} className='mt-3 '>Furniture Id: {itemId}</p>
-                    <h3 className='fw-bold'>{item.name}</h3>
-                    <p className='my-4 fw-bolder'>{item.description}</p>
+                    <h3 className='fw-bold'>{item?.name}</h3>
+                    <p className='my-4 fw-bolder'>{item?.description}</p>
                     <h5 className='fw-bold'>Price: ${item.price}</h5>
-                    <h5 className='my-4' style={{ fontFamily: "'Roboto', sans-serif" }} >Suppiler Name: {item.supplier}</h5>
-                    <h5 className=' fw-bold bg-dark text-white d-inline px-3 rounded-pill'>Quantity: {item.quantity}</h5>
+                    <h5 className='my-4' style={{ fontFamily: "'Roboto', sans-serif" }} >Suppiler Name: {item?.supplier}</h5>
+                    <h5 className=' fw-bold bg-dark text-white d-inline px-3 rounded-pill'>Quantity: {item?.quantity}</h5>
 
                     <div className='my-5 d-flex justify-content-evenly'>
 

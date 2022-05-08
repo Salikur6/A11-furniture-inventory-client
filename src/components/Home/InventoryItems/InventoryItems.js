@@ -1,11 +1,16 @@
 import { Link, useNavigate } from 'react-router-dom';
+import Spinner from '../../../Hooks/Spinner';
 import useInventory from '../../Hooks/useInventory';
 
 const InventoryItems = () => {
-    const [products] = useInventory();
-    // console.log(products)
-
+    const [products, load] = useInventory();
+    console.log(products)
     const navigate = useNavigate();
+
+    // spin if product not loaded
+    if (!products) {
+        return <Spinner></Spinner>
+    }
     return (
         <div className='container my-5'>
 
@@ -31,8 +36,11 @@ const InventoryItems = () => {
                 </div>
             </div>
 
-
+            {/* home page 6 items products slice and map */}
+            {load}
             <div className='row g-4'>
+
+
                 {products.slice(0, 6).map(pd =>
 
                     <div className='col-md-6 col-lg-4 col-12' key={pd._id}>

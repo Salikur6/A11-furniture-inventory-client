@@ -51,13 +51,13 @@ const Header = () => {
                         <li className="nav-item">
                             <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} aria-current="page" to="/">Home</Link>
                         </li>
-                        <li className="nav-item">
+                        {user && <li className="nav-item">
                             <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="/manageinventory">Manage Item</Link>
-                        </li>
+                        </li>}
 
-                        <li className="nav-item">
+                        {user && <li className="nav-item">
                             <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="/additem">Add Item</Link>
-                        </li>
+                        </li>}
 
                         <li className="nav-item">
                             <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="/blogs">Blogs</Link>

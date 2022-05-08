@@ -1,14 +1,18 @@
-import React from 'react';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import React, { useState } from 'react';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../Firebase.init';
 import Spinner from '../../Hooks/Spinner';
 
 const Login = () => {
+
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || "/";
+    const [formData, setFormData] = useState('');
+    console.log(formData);
     const [
         signInWithEmailAndPassword,
         user,
@@ -22,18 +26,43 @@ const Login = () => {
         signInWithGoogle();
     }
 
+
+    const [sendPasswordResetEmail, sending, resetPasswordError] = useSendPasswordResetEmail(auth);
+    const handlePasswordReset = async () => {
+
+        if (error?.message === 'MISSING_EMAIL' || formData === '') {
+
+            return <div>{resetPasswordError && resetPasswordError.message}
+
+                <h6>{error && error.message}</h6>
+
+            </div>
+
+        } else {
+            await sendPasswordResetEmail(formData);
+            toast('sent email')
+        }
+
+        console.log(formData);
+    }
+    // console.log(formData);
+
+
+
+
     const { register, handleSubmit, formState: { errors } } = useForm();
     if (user || googleUser) {
         navigate(from, { replace: true });
     }
 
+
     const onSubmit = data => {
         console.log(data)
-
+        setFormData(data.email);
         signInWithEmailAndPassword(data.email, data.password);
 
     };
-    console.log(errors);
+    // console.log(errors);
     return (
         <div>
             <div>
@@ -45,7 +74,13 @@ const Login = () => {
 
                         <div className='my-4 w-50 mx-auto'>
                             <label className="form-label fw-bold">Email address</label>
-                            <input className=' form-control' type="text" placeholder="email" {...register("email", { required: true, pattern: /^\S+@\S+$/i })} />
+
+                            {/* onChange={event => setEmail(event.target.value)}  */}
+                            <input className='form-control' onChange={(e) => console.log(e.target.value)} name='email' type="email" placeholder="email" {...register("email", {
+                                required: true, pattern: /^\S+@\S+$/i
+                            })} />
+
+
                             <p className='fw-bold text-danger'>
                                 {errors?.email && "*Enter a Valid Email"}
                             </p>
@@ -54,7 +89,10 @@ const Login = () => {
 
                         <div className='my-4 w-50 mx-auto'>
                             <label className="form-label fw-bold">Password</label>
-                            <input className='form-control' name='password' type="password" placeholder="password" {...register("password", { required: true, max: 0, min: 6, maxLength: 12, pattern: /.{6,}/i })} />
+
+                            <input className='form-control' name='password' type="password" placeholder="password" {...register("password", { required: false, max: 0, min: 6, maxLength: 12, pattern: /.{6,}/i })} />
+
+
 
                             <p className='fw-bold text-danger'>
                                 {errors?.password && "*Enter a Valid Password"}
@@ -73,13 +111,21 @@ const Login = () => {
                         </div>
                     </form>
 
+                    <div className='text-center my-2'>
+                        {sending && <Spinner></Spinner>}
+                    </div>
+
+                    <div className='text-center fw-bold text-danger mb-3'>
+                        <p className=''>{resetPasswordError?.message && resetPasswordError?.message} </p>
+
+                    </div>
 
 
                     <div className='text-center'>
                         <p className='fw-bold'>If you don't have an account, <Link to='/register'>Click on Register</Link></p>
 
 
-                        <p className='fw-bold'>Forget Password? <Link to>Reset Password</Link></p>
+                        <p className='fw-bold' onClick={handlePasswordReset}>Forget Password? <Link to>Reset Password</Link></p>
                     </div>
 
 

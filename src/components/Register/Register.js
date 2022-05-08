@@ -91,7 +91,7 @@ const Register = () => {
 
                     <div className='my-4 w-50 mx-auto'>
                         <label className="form-label fw-bold">Email address</label>
-                        <input className='form-control' name='email' type="text" placeholder="email" {...register("email", { required: true, pattern: /^\S+@\S+$/i })} />
+                        <input className='form-control' name='email' type="email" placeholder="email" {...register("email", { required: true, pattern: /^\S+@\S+$/i })} />
                         <p className='fw-bold text-danger'>
                             {errors.email && "*Enter a Valid Email"}
                         </p>

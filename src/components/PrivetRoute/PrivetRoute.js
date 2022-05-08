@@ -9,9 +9,13 @@ const PrivetRoute = ({ children }) => {
     const [user, loading, error] = useAuthState(auth);
     let location = useLocation();
 
+    //for sending verification email
+
     const [sendEmailVerification, sending, emailVerifiyError] = useSendEmailVerification(auth);
 
-    console.log(user)
+    // console.log(user)
+
+
 
     if (loading) {
         return <Spinner></Spinner>
@@ -27,14 +31,15 @@ const PrivetRoute = ({ children }) => {
 
     <h6>{error && <h6>{error?.message}</h6>}</h6>
 
-
+    // if user not verified then exicute this content
 
     if (!user?.emailVerified) {
         return <div className=' bg-dark text-white text-center'>
             <div className='container pt-5'>
                 <h3 className='fw-bold mt-4 text-primary'>Hello "{user?.displayName}"</h3>
                 <h4 className='fw-bold my-5'>Welcome to Homely Furniture</h4>
-                <h3><span className='text-warning d-block my-3'>please verify your email address.</span></h3>
+                <h3>Almost there...</h3>
+                <h3><span className='text-warning d-block my-3'>please verify your email address.<p className='text-danger fw-bold mt-3'>({user.email})</p></span></h3>
             </div>
             <div className='text-center pb-5'>
                 <h6 className='fw-bold'>{sending && <p>Email Sending...</p>}</h6>

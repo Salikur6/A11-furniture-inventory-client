@@ -13,6 +13,8 @@ const Home = () => {
     const [user] = useAuthState(auth);
     return (
         <>
+
+            {/* Banner section */}
             <div className=''>
                 <div className='position-relative banner'>
 
@@ -33,6 +35,8 @@ const Home = () => {
 
             </div>
 
+
+            {/* Different Component for home page */}
             <LogoCarousel></LogoCarousel>
             <InventoryItems></InventoryItems>
 

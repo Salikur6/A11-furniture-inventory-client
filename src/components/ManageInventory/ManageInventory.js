@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useInventory from '../Hooks/useInventory';
 import './ManageInventory.css'
 
@@ -8,7 +8,16 @@ const ManageInventory = () => {
     const navigate = useNavigate();
     return (
         <div className='manageInventory'>
-            <div className='py-5'>
+
+            <div className='text-center pt-5'>
+                <h2 className='fw-bold '>Manage <span className='text-danger'>Inventory</span></h2>
+            </div>
+
+            <div className='text-center mt-4'>
+                <Link to='/additem' className='btn btn-dark fw-bold'>Add New Item</Link>
+            </div>
+
+            <div className='pb-5'>
                 <div style={{ width: '95%' }} className='row g-4 my-5 mx-auto'>
                     <div className="tbl-header" >
                         <table className="table table-hover m-0">
