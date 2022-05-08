@@ -6,8 +6,11 @@ import LogoCarousel from './LogoCarousel/LogoCarousel';
 import About from './About/About';
 import Contact from './Contact/Contact';
 import { Link } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../Firebase.init';
 
 const Home = () => {
+    const [user] = useAuthState(auth);
     return (
         <>
             <div className=''>
@@ -23,7 +26,7 @@ const Home = () => {
                         <p>Modern & Powerfull Furniture <br />
                             High quality furniture rentals available
                         </p>
-                        <Link to='/register' className='btn btn-success fw-bold px-4 my-3'>Sign up for free</Link>
+                        {user ? <Link to='/manageinventory' className='btn btn-success fw-bold px-4 my-3'>Manage All Items</Link> : <Link to='/register' className='btn btn-success fw-bold px-4 my-3'>Sign up for free</Link>}
                     </div>
                 </div>
 

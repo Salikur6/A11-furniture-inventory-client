@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../Firebase.init';
 import Spinner from '../../Hooks/Spinner';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -13,7 +13,7 @@ const Register = () => {
     const location = useLocation();
 
 
-    const from = location.state?.from?.pathname || "/";
+    let from = location.state?.from?.pathname || "/manageinventory";
 
     const [
         createUserWithEmailAndPassword,
@@ -29,6 +29,11 @@ const Register = () => {
         signInWithGoogle();
     }
 
+    // Update User Profile ...name
+
+    const [updateProfile, updating] = useUpdateProfile(auth);
+
+
 
     const handleCheck = e => {
         const checkBox = e.target.checked;
@@ -39,17 +44,30 @@ const Register = () => {
         }
     }
 
+    if (updating) {
+        return <button className="btn btn-primary" type="button">
+            <span className="spinner-border me-2 spinner-border-sm" role="status" aria-hidden="true"></span>
+            Updating...
+        </button>
+    }
+
+
+
+
+
+
+    const onSubmit = async (data) => {
+        console.log(data)
+
+        await createUserWithEmailAndPassword(data.email, data.password)
+
+        await updateProfile({ displayName: data.name })
+    };
+
+
     if (user || googleUser) {
         navigate(from, { replace: true });
     }
-
-    const onSubmit = (data) => {
-        console.log(data)
-
-        createUserWithEmailAndPassword(data.email, data.password)
-
-    };
-
 
     // console.log(errors);
 
