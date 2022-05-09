@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import useSingleIventory from '../Hooks/useSingleIventory';
 import './InventoryItemDetails.css'
 import { useForm } from "react-hook-form";
+import { toast } from 'react-toastify';
 
 
 const InventoryItem = () => {
@@ -50,6 +51,7 @@ const InventoryItem = () => {
                     // console.log(data)
                     setQ(item?.quantity)
                     setReload(!reload);
+                    toast('Quantity decrease')
                 })
         }
     }
@@ -78,7 +80,7 @@ const InventoryItem = () => {
 
     // quantity restock form 
 
-    const onSubmit = (data, event) => {
+    const onSubmit = (data, e) => {
         const quantity = data?.quantity;
         // console.log(data)
         const url = `https://still-chamber-50520.herokuapp.com/stockinventory/${itemId}`;
@@ -95,6 +97,7 @@ const InventoryItem = () => {
 
                 setQ(item?.quantity)
                 setReload(!reload);
+                toast('Quantity Added')
                 // setSold(false);
 
             })
@@ -136,7 +139,7 @@ const InventoryItem = () => {
 
                         <form onSubmit={handleSubmit(onSubmit)}>
 
-                            <input type="number" {...register("quantity", { min: 0, max: 999 })} placeholder='Number of Furniture' />
+                            <input type="number" {...register("quantity", { min: 1, max: 999 })} placeholder='Number of Furniture' />
                             <div className='my-3'>
                                 <input className='btn btn-info fw-bold' type="submit" value='Increase Quantity' />
                             </div>

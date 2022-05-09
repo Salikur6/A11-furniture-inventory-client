@@ -76,8 +76,8 @@ const ManageInventory = () => {
                                     <tr className='border-5' key={pd?._id}>
 
 
-                                        <td data-label='Product Name' className='fw-bold py-4'>{pd.name}</td>
-                                        <td data-label='Email' className='fw-bold  py-4'>Email</td>
+                                        <td style={{ fontFamily: "'Cinzel', serif" }} data-label='Product Name' className='fw-bold py-4'>{pd.name}</td>
+                                        <td data-label='Email' className='fw-bold  py-4'>{pd?.email ? pd?.email : 'Not Found'}</td>
                                         <td data-label='Stock' className='fw-bold text-center'>{pd.quantity}</td>
                                         <td data-label='Price' className='fw-bold text-center'>${pd.price}</td>
                                         <td data-label='Supplier' className='fw-bold text-center'>{pd.supplier}</td>

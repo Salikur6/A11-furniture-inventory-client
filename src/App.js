@@ -11,6 +11,7 @@ import InventoryItem from './components/InventoryItemDetails/InventoryItemDetail
 import Login from './components/Login/Login';
 import ManageInventory from './components/ManageInventory/ManageInventory';
 import MyItems from './components/MyItems/MyItems';
+import NotFound from './components/NotFound/NotFound';
 import PrivetRoute from './components/PrivetRoute/PrivetRoute';
 import Register from './components/Register/Register';
 
@@ -50,6 +51,8 @@ function App() {
             <MyItems></MyItems>
           </PrivetRoute>
         }></Route>
+
+        <Route path='*' element={<NotFound></NotFound>}></Route>
 
       </Routes>
 

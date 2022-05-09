@@ -38,14 +38,20 @@ const InventoryItems = () => {
 
             {/* home page 6 items products slice and map */}
             {load}
-            <div className='row g-4'>
+            <div className='row g-5'>
 
 
                 {products.slice(0, 6).map(pd =>
 
                     <div className='col-md-6 col-lg-4 col-12' key={pd?._id}>
-                        <div className="card">
-                            <img style={{ height: '300px' }} src={pd?.img} className="card-img-top w-100" alt="furniture images..." />
+                        <div style={{
+                            background: '#e0e0e0',
+                            boxShadow: '33px 33px 67px #acacac, -33px -33px 67px #fff',
+                            borderRadius: '20px'
+
+
+                        }} className="card">
+                            <img style={{ height: '300px', borderRadius: '20px 20px 0 0' }} src={pd?.img} className="card-img-top w-100" alt="furniture images..." />
                             <div className="card-body">
                                 <h5 className="card-title fw-bold my-2">{pd?.name}</h5>
 
