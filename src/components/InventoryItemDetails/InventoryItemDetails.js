@@ -32,12 +32,12 @@ const InventoryItem = () => {
 
     //handleing deliverd button for quantity reduce 
 
-    const handleDelivered = () => {
+    const handleDelivered = (id) => {
 
         const quantity = parseInt(item.quantity) - 1;
 
         if (quantity >= 0) {
-            const url = `https://still-chamber-50520.herokuapp.com/inventory/${itemId}`;
+            const url = `https://still-chamber-50520.herokuapp.com/inventory/${id}`;
             fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -53,6 +53,27 @@ const InventoryItem = () => {
                 })
         }
     }
+    // const handleDelivered = () => {
+
+    //     const quantity = parseInt(item.quantity) - 1;
+
+    //     if (quantity >= 0) {
+    //         const url = `https://still-chamber-50520.herokuapp.com/inventory/${itemId}`;
+    //         fetch(url, {
+    //             method: 'PUT',
+    //             headers: {
+    //                 'content-type': 'application/json'
+    //             },
+    //             body: JSON.stringify({ quantity })
+    //         })
+    //             .then(res => res.json())
+    //             .then(data => {
+    //                 // console.log(data)
+    //                 setQ(item?.quantity)
+    //                 setReload(!reload);
+    //             })
+    //     }
+    // }
 
 
     // quantity restock form 
@@ -60,7 +81,7 @@ const InventoryItem = () => {
     const onSubmit = (data, event) => {
         const quantity = data?.quantity;
         // console.log(data)
-        const url = `https://still-chamber-50520.herokuapp.com/inventory/${itemId}`;
+        const url = `https://still-chamber-50520.herokuapp.com/stockinventory/${itemId}`;
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -100,7 +121,7 @@ const InventoryItem = () => {
                     <div className='my-5 d-flex justify-content-evenly'>
 
                         {
-                            sold ? <button className='btn btn-danger fw-bold p-2 rounded-pill' onClick={handleDelivered}>Sold Out</button> : <button className='btn btn-primary fw-bold p-2 rounded-pill' onClick={handleDelivered}>Delivered</button>
+                            sold ? <button className='btn btn-danger fw-bold p-2 rounded-pill' onClick={handleDelivered}>Sold Out</button> : <button className='btn btn-primary fw-bold p-2 rounded-pill' onClick={() => handleDelivered(item?._id)}>Delivered</button>
                         }
                         {/* <button className='btn btn-primary fw-bold p-2 rounded-pill' onClick={handleDelivered}>Delivered</button> */}
 

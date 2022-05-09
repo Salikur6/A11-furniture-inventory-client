@@ -10,6 +10,7 @@ import Home from './components/Home/Home';
 import InventoryItem from './components/InventoryItemDetails/InventoryItemDetails';
 import Login from './components/Login/Login';
 import ManageInventory from './components/ManageInventory/ManageInventory';
+import MyItems from './components/MyItems/MyItems';
 import PrivetRoute from './components/PrivetRoute/PrivetRoute';
 import Register from './components/Register/Register';
 
@@ -43,6 +44,12 @@ function App() {
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
 
         <Route path='/additem' element={<AddItem></AddItem>}></Route>
+
+        <Route path='/myitems' element={
+          <PrivetRoute>
+            <MyItems></MyItems>
+          </PrivetRoute>
+        }></Route>
 
       </Routes>
 

@@ -59,6 +59,10 @@ const Header = () => {
                             <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="/additem">Add Item</Link>
                         </li>}
 
+                        {user && <li className="nav-item">
+                            <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="/myitems">My Items</Link>
+                        </li>}
+
                         <li className="nav-item">
                             <Link className={active ? 'nav-link text-white fw-bold' : 'custom-nav nav-link text-warning fw-bold'} to="/blogs">Blogs</Link>
                         </li>

@@ -7,7 +7,7 @@ const useInventory = () => {
     // console.log(products)
 
     // inventory items data with spinner
-    console.log(load)
+    // console.log(load)
 
     useEffect(() => {
         fetch('https://still-chamber-50520.herokuapp.com/inventory')
