@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../Firebase.init';
 import Spinner from '../../Hooks/Spinner';
 
@@ -8,7 +8,7 @@ const MyItems = () => {
     const [products, setProducts] = useState([]);
     const [load, setLoad] = useState(false);
     const [user] = useAuthState(auth);
-
+    const navigate = useNavigate();
     const [myD, setMyD] = useState([]);
 
     // console.log(products)
@@ -99,7 +99,7 @@ const MyItems = () => {
                                             <td data-label='Supplier' className='fw-bold text-center'>{pd.supplier}</td>
                                             <td data-label='modifiy' className='fw-bold text-center'>
                                                 <div>
-                                                    <button className='btn btn-warning' onClick={() => Navigate(`/inventory/${pd._id}`)}>Update Stock</button></div>
+                                                    <button className='btn btn-warning' onClick={() => navigate(`/inventory/${pd._id}`)}>Update Stock</button></div>
                                             </td>
                                             <td className='fw-bold'>
                                                 <div>
