@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.css'
-import banner from '../../img/banner2.jpg'
+import banner from '../../img/banner.jpg'
 import InventoryItems from './InventoryItems/InventoryItems';
 import LogoCarousel from './LogoCarousel/LogoCarousel';
 import About from './About/About';

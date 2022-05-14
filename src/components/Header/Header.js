@@ -22,21 +22,13 @@ const Header = () => {
     const location = useLocation();
     let active = false;
 
-
     if (location.pathname === `/`) {
         active = true;
     }
 
-
     const logOut = () => {
         signOut(auth);
     };
-
-
-
-
-
-
 
 
     return (

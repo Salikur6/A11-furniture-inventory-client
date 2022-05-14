@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import useInventory from '../Hooks/useInventory';
 import './ManageInventory.css'
+import Swal from 'sweetalert2'
 
 const ManageInventory = () => {
     const [load, setLoad] = useState(false);
@@ -10,27 +10,37 @@ const ManageInventory = () => {
     const navigate = useNavigate();
 
     const handleDelete = (id) => {
-        fetch(`https://still-chamber-50520.herokuapp.com/itemdelete/${id}`, {
-            method: 'DELETE'
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`https://still-chamber-50520.herokuapp.com/itemdelete/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount === 1) {
+                            const remaining = products.filter(pd => pd._id !== id);
+                            setProducts(remaining);
+                            setLoad(!load);
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                        }
+                    })
+                    .catch(err => console.log(err));
+            }
         })
-            .then(res => res.json())
-            .then(data => {
-                if (data.deletedCount === 1) {
-                    const remaining = products.filter(pd => pd._id !== id);
-                    setProducts(remaining);
-                    setLoad(!load);
-                    toast('Item deleted Permanently')
-
-                } else {
-                    toast('Already deleted Permanently')
-                }
-                console.log(data)
-
-            })
-            .catch(err => console.log(err));
     }
-
-
 
 
     return (

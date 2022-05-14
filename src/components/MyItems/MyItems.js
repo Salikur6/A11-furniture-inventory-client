@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
+// import { toast } from 'react-toastify';
 import auth from '../../Firebase.init';
 import Spinner from '../../Hooks/Spinner';
+import Swal from 'sweetalert2'
 
 const MyItems = () => {
     const [products, setProducts] = useState([]);
@@ -11,42 +13,67 @@ const MyItems = () => {
     const navigate = useNavigate();
     const [myD, setMyD] = useState([]);
 
-    // console.log(products)
-    // console.log(myD);
-
     useEffect(() => {
         fetch('https://still-chamber-50520.herokuapp.com/inventory')
             .then(res => res.json())
             .then(data => {
-                // console.log(data)
-
-
                 setProducts(data);
                 setLoad(load)
 
-                // if (myData) {
-
-                // }
                 const myData = products.filter(pd => pd?.email === user?.email)
-                // console.log(myData)
 
                 setMyD(myData);
-
-
-                // if (data) {
-                //     setProducts(data)
-                //     setLoad(false)
-                // } else {
-                //     setLoad(true)
-                //     return <Spinner></Spinner>
-
-                // }
-
-
             })
     }, [products, load, user?.email])
 
-    // products, load,
+
+    const handleDelete = (id) => {
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    console.log(result)
+                    fetch(`https://still-chamber-50520.herokuapp.com/itemdelete/${id}`, {
+                        method: 'DELETE',
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+
+                            const remaining = products.filter(pd => pd._id !== id);
+                            setProducts(remaining);
+
+                            if (data.deletedCount === 1) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                            }
+                        })
+
+
+
+                }
+                else {
+
+                }
+
+
+
+                // toast('Item Delete Permanently')
+            })
+    }
+
+
 
     return (
         <div>
@@ -74,7 +101,6 @@ const MyItems = () => {
                                         <th className='fw-bold p-3 fs-5' >Supplier</th>
                                         <th className='fw-bold p-3 fs-5' >modifiy</th>
                                     </tr>
-
                                 </thead>
                             </table>
                         </div>
@@ -90,8 +116,6 @@ const MyItems = () => {
                                     </tr>
                                     {myD.map(pd =>
                                         <tr className='border-5' key={pd?._id}>
-
-
                                             <td style={{ fontFamily: "'Cinzel', serif" }} data-label='Product Name' className='fw-bold py-4'>{pd.name}</td>
                                             <td data-label='Email' className='fw-bold  py-4'>{pd?.email}</td>
                                             <td data-label='Stock' className='fw-bold text-center'>{pd.quantity}</td>
@@ -103,8 +127,8 @@ const MyItems = () => {
                                             </td>
                                             <td className='fw-bold'>
                                                 <div>
-                                                    <button className='btn btn-danger'>Delete</button>
-                                                    {/* onClick={() => handleDelete(item?._id)} */}
+                                                    <button className='btn btn-danger' onClick={() => handleDelete(pd?._id)}>Delete</button>
+
                                                 </div>
                                             </td>
                                         </tr>
