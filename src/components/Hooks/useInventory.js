@@ -3,7 +3,7 @@ import Spinner from '../../Hooks/Spinner';
 
 const useInventory = () => {
     const [products, setProducts] = useState([]);
-    const [load, setLoad] = useState(false);
+    // const [load, setLoad] = useState(false);
     // console.log(products)
 
     // inventory items data with spinner
@@ -16,19 +16,16 @@ const useInventory = () => {
                 // console.log(data)
 
                 if (data) {
+                    // setLoad(!load)
                     setProducts(data)
-                    setLoad(true)
                 } else {
-                    setLoad(false)
                     return <Spinner></Spinner>
 
-
                 }
-
-
             })
     }, [])
-    return [products, load]
+    // products
+    return [products, setProducts]
 };
 
 export default useInventory;

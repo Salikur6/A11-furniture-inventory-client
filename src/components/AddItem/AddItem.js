@@ -16,7 +16,7 @@ const AddItem = () => {
         const { name, email, description, price, quantity, supplier, img } = data;
         console.log(name)
 
-        fetch('http://localhost:5000/addproduct', {
+        fetch('https://still-chamber-50520.herokuapp.com/addproduct', {
             method: 'POST',
             headers: {
                 'authorization': `${user.email}`,

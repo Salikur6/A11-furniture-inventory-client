@@ -48,10 +48,14 @@ const InventoryItem = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    // console.log(data)
-                    setQ(item?.quantity)
-                    setReload(!reload);
-                    toast('Quantity decrease')
+                    console.log(data)
+
+                    if (data.modifiedCount === 1) {
+                        setQ(item?.quantity)
+                        setReload(!reload);
+                        toast('Quantity decrease')
+                    }
+
                 })
         }
     }

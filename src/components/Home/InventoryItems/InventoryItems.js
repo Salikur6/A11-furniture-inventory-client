@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import useInventory from '../../Hooks/useInventory';
 
 const InventoryItems = () => {
-    const [products, load] = useInventory();
+    const [products] = useInventory();
     // console.log(products)
     const navigate = useNavigate();
 
@@ -37,7 +37,7 @@ const InventoryItems = () => {
             </div>
 
             {/* home page 6 items products slice and map */}
-            {load}
+            {/* {load} */}
             <div className='row g-5'>
 
 
