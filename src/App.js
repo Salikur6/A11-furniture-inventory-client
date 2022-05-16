@@ -9,6 +9,7 @@ import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import InventoryItem from './components/InventoryItemDetails/InventoryItemDetails';
 import Login from './components/Login/Login';
+import ResetPassword from './components/Login/ResetPassword';
 import ManageInventory from './components/ManageInventory/ManageInventory';
 import MyItems from './components/MyItems/MyItems';
 import NotFound from './components/NotFound/NotFound';
@@ -41,6 +42,8 @@ function App() {
         <Route path='/register' element={<Register></Register>}></Route>
 
         <Route path='/login' element={<Login></Login>}></Route>
+
+        <Route path='/resetpassword' element={<ResetPassword></ResetPassword>}></Route>
 
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
 
