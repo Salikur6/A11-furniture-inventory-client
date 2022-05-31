@@ -9,19 +9,19 @@ import { toast } from 'react-toastify';
 const InventoryItem = () => {
     const { register, handleSubmit } = useForm();
     const { itemId } = useParams();
-    const [item, setItem] = useSingleIventory(itemId);
+    const { item, refetch } = useSingleIventory(itemId);
     // console.log(item)
-    const [reload, setReload] = useState(false);
-    const [q, setQ] = useState([]);
+    // const [reload, setReload] = useState(false);
+    // const [q, setQ] = useState([]);
     const [sold, setSold] = useState(false);
-    console.log(q)
+    // console.log(item)
 
     useEffect(() => {
         fetch(`https://still-chamber-50520.herokuapp.com/inventory/${itemId}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data.quantity)
-                setItem(data)
+                // setItem(data)
 
                 if (data.quantity === 0) {
                     setSold(true);
@@ -29,7 +29,7 @@ const InventoryItem = () => {
                     setSold(false);
                 }
             })
-    }, [itemId, reload, setItem, sold]);
+    }, [itemId, refetch, sold]);
 
     //handleing deliverd button for quantity reduce 
 
@@ -48,11 +48,12 @@ const InventoryItem = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data)
+                    // console.log(data)
 
                     if (data.modifiedCount === 1) {
-                        setQ(item?.quantity)
-                        setReload(!reload);
+                        // setQ(item?.quantity)
+                        // setReload(!reload);
+                        refetch();
                         toast('Quantity decrease')
                     }
 
@@ -99,8 +100,9 @@ const InventoryItem = () => {
             .then(data => {
 
 
-                setQ(item?.quantity)
-                setReload(!reload);
+                // setQ(item?.quantity)
+                // setReload(!reload);
+                refetch();
                 toast('Quantity Added')
                 // setSold(false);
 
@@ -121,7 +123,7 @@ const InventoryItem = () => {
                     <p style={{ fontSize: '14px' }} className='mt-3 '>Furniture Id: {itemId}</p>
                     <h3 className='fw-bold'>{item?.name}</h3>
                     <p className='my-4 fw-bolder'>{item?.description}</p>
-                    <h5 className='fw-bold'>Price: ${item.price}</h5>
+                    <h5 className='fw-bold'>Price: ${item?.price}</h5>
                     <h5 className='my-4' style={{ fontFamily: "'Roboto', sans-serif" }} >Suppiler Name: {item?.supplier}</h5>
                     <h5 className=' fw-bold bg-dark text-white d-inline px-3 rounded-pill'>Quantity: {item?.quantity}</h5>
 

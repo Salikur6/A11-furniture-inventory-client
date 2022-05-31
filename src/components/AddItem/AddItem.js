@@ -12,9 +12,9 @@ const AddItem = () => {
 
     const onSubmit = (data, e) => {
 
-        console.log(data)
+        // console.log(data)
         const { name, email, description, price, quantity, supplier, img } = data;
-        console.log(name)
+        // console.log(name)
 
         fetch('https://still-chamber-50520.herokuapp.com/addproduct', {
             method: 'POST',
@@ -26,7 +26,7 @@ const AddItem = () => {
         })
             .then(response => response.json())
             .then(d => {
-                console.log('Success:', d);
+                // console.log('Success:', d);
                 toast('New Item Added');
                 e.target.reset();
 

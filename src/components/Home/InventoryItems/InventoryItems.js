@@ -1,16 +1,24 @@
+import { useQuery } from 'react-query';
 import { Link, useNavigate } from 'react-router-dom';
-// import Spinner from '../../../Hooks/Spinner';
-import useInventory from '../../Hooks/useInventory';
+import Spinner from '../../../Hooks/Spinner';
+// import useInventory from '../../Hooks/useInventory';
 
 const InventoryItems = () => {
-    const [products] = useInventory();
+    // const [products] = useInventory();
     // console.log(products)
     const navigate = useNavigate();
 
+
+    const { data: products, isLoading } = useQuery('products', () => fetch('https://still-chamber-50520.herokuapp.com/inventory').then(res => res.json()))
+
+
     // spin if product not loaded
-    // if (!products) {
-    //     return <Spinner></Spinner>
-    // }
+    if (isLoading) {
+        return <Spinner></Spinner>
+    }
+
+
+
     return (
         <div className='container my-5'>
 

@@ -1,13 +1,26 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import useInventory from '../Hooks/useInventory';
+// import useInventory from '../Hooks/useInventory';
 import './ManageInventory.css'
 import Swal from 'sweetalert2'
+import useQueryInventory from '../Hooks/useQueryInventory';
 
 const ManageInventory = () => {
     const [load, setLoad] = useState(false);
-    const [products, setProducts] = useInventory();
+    // const [products, setProducts] = useInventory();
     const navigate = useNavigate();
+
+
+
+
+
+
+    const { products, refetch } = useQueryInventory();
+
+
+    // console.log(products)
+
+
 
     const handleDelete = (id) => {
 
@@ -27,8 +40,9 @@ const ManageInventory = () => {
                     .then(res => res.json())
                     .then(data => {
                         if (data.deletedCount === 1) {
-                            const remaining = products.filter(pd => pd._id !== id);
-                            setProducts(remaining);
+                            // const remaining = products.filter(pd => pd._id !== id);
+                            // setProducts(remaining);
+                            refetch();
                             setLoad(!load);
                             Swal.fire(
                                 'Deleted!',
@@ -76,7 +90,7 @@ const ManageInventory = () => {
                         <table className='table table-sm table-hover' cellPadding="0" cellSpacing="0" border="0">
                             <div className='mt-4'></div>
                             <tbody>
-                                {products.map(pd =>
+                                {products?.map(pd =>
                                     <tr className='border-5' key={pd?._id}>
                                         <td style={{ fontFamily: "'Cinzel', serif" }} data-label='Product Name' className='fw-bold py-4'>{pd.name}</td>
                                         <td data-label='Email' className='fw-bold  py-4'>{pd?.email ? pd?.email : 'Not Found'}</td>

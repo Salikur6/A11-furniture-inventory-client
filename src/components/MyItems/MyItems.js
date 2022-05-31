@@ -40,13 +40,13 @@ const MyItems = () => {
         })
             .then((result) => {
                 if (result.isConfirmed) {
-                    console.log(result)
+                    // console.log(result)
                     fetch(`https://still-chamber-50520.herokuapp.com/itemdelete/${id}`, {
                         method: 'DELETE',
                     })
                         .then(res => res.json())
                         .then(data => {
-                            console.log(data);
+                            // console.log(data);
 
                             const remaining = products.filter(pd => pd._id !== id);
                             setProducts(remaining);
