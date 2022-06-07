@@ -14,8 +14,8 @@ This website contain some furniture products. This website is for user and admin
 
 * Home page 6 items displayed for user.
 * A blogs page for beatiful articals.
-* Only admin has permi to go more page like Manage Item, my items.
+* Only admin has permission to go more page like Manage Item, my items.
 * Admin can manage item, update item by increase and decrease quantity.
 * Admin can add item and delete items. 
-* You can register or login in this website for Admin.
+* Implemented login system for authorising the Clients and ordering how much he/she needs.
 
